@@ -19,6 +19,7 @@ class TaskCard extends StatelessWidget {
       onTap: (){
         Get.to(()=> Detail());
         homeController.changeTask(task);
+        homeController.changeTodo(task.todoList ?? []);
       },
       child: Container(
         width: squareWidth / 2,

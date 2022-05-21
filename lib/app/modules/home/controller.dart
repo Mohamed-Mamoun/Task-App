@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:todo_app/app/data/Services/Storage/repository.dart';
 import 'package:todo_app/app/data/models/task.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,8 @@ class HomeController extends GetxController {
   final chipIndex = 0.obs;
   final delete = false.obs;
   final task = Rx<Task?>(null);
+  final doingTodo = [].obs;
+  final doneTodo = [].obs;
 
   @override
   void onInit() {
@@ -67,5 +70,39 @@ class HomeController extends GetxController {
 
   bool containTodo(List todos, String text) {
     return todos.any((element) => element['title'] == text);
+  }
+
+  void changeTodo(List<dynamic> selectedTodo){
+    doingTodo.clear();
+    doneTodo.clear();
+    for(int i = 0; i < selectedTodo.length ; i++){
+      var todo = selectedTodo[i];
+      var status = todo['done'];
+      if(status){
+        doneTodo.add(todo);
+      }else{
+        doingTodo.add(todo);
+      }
+    }
+  }
+  bool addTodo(String title){
+    var todo = {'title': title, 'done': false};
+    if(doingTodo.any((element) => mapEquals(todo, element))){
+      return false;
+    }
+    var doneTodo = {'title': title, 'done': true};
+    if(doingTodo.any((element) => mapEquals(doneTodo, element))){
+      return false;
+    }
+    doingTodo.add(todo);
+    return true;
+  }
+  void updateTodos(Task task){
+    var newTodos = <Map<String, dynamic>>[];
+    newTodos.addAll([...doingTodo, ...doneTodo]);
+    var newTask = task.copywith(todoList: newTodos);
+    int oldIndex = tasks.indexOf(task);
+    tasks[oldIndex] = newTask;
+    tasks.refresh();
   }
 }
