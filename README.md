@@ -1,6 +1,6 @@
 # todo_app
 
-A new Flutter project.
+Task App Developed in Flutter Freamwork using get x for State Managment.
 
 ## Getting Started
 
