@@ -30,20 +30,19 @@ class AddDialog extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      if(homeController.formKey.currentState!.validate()){
-                        if(homeController.task.value == null){
+                      if (homeController.formKey.currentState!.validate()) {
+                        if (homeController.task.value == null) {
                           EasyLoading.showError('Please Select Task Type');
                         } else {
                           var success = homeController.updateTask(
-                            homeController.task.value!,
-                            homeController.titleController.text
-                          );
-                          if (success){
+                              homeController.task.value!,
+                              homeController.titleController.text);
+                          if (success) {
                             EasyLoading.showSuccess('Task Added Successfully');
-                             Get.back();
-                             homeController.titleController.clear();
-                             homeController.changeTask(null);
-                          }else{
+                            Get.back();
+                            homeController.titleController.clear();
+                            homeController.changeTask(null);
+                          } else {
                             EasyLoading.showError('Task Already Exist');
                           }
                         }
@@ -91,38 +90,46 @@ class AddDialog extends StatelessWidget {
                 top: 3.0.wp,
                 bottom: 5.0.wp,
               ),
-              child: Text('Add To',
-              style: TextStyle(
-                fontSize: 15.0.sp,
-                color: Colors.grey
+              child: Text(
+                'Add To',
+                style: TextStyle(fontSize: 15.0.sp, color: Colors.grey),
               ),
-              ),
-              ),
+            ),
             ...homeController.tasks
                 .map((element) => Obx(
-                  () => InkWell(
-                    onTap: (){
-                      homeController.changeTask(element);
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5.0.wp, vertical: 3.0.wp),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      () => InkWell(
+                        onTap: () {
+                          homeController.changeTask(element);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 5.0.wp, vertical: 3.0.wp),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                             Row(
-                               children: [
-                                  Icon(IconData(element.icon, fontFamily: 'MaterialIcons'), color: HexColor.fromHex(element.color),),
-                              SizedBox(width: 4.0.wp,),
-                              Text(element.title, style: TextStyle(fontSize:15.0.sp, fontWeight: FontWeight.bold))
-                               ],
-                             ),
-                             if(homeController.task.value == element)
-                             const Icon(Icons.check, color: Colors.green)
+                              Row(
+                                children: [
+                                  Icon(
+                                    IconData(element.icon,
+                                        fontFamily: 'MaterialIcons'),
+                                    color: HexColor.fromHex(element.color),
+                                  ),
+                                  SizedBox(
+                                    width: 4.0.wp,
+                                  ),
+                                  Text(element.title,
+                                      style: TextStyle(
+                                          fontSize: 15.0.sp,
+                                          fontWeight: FontWeight.bold))
+                                ],
+                              ),
+                              if (homeController.task.value == element)
+                                const Icon(Icons.check, color: Colors.green)
                             ],
                           ),
-                    ),
-                  ),
-                ))
+                        ),
+                      ),
+                    ))
                 .toList()
           ],
         ),

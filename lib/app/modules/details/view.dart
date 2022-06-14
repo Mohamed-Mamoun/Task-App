@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:todo_app/app/core/utils/extensions.dart';
+import 'package:todo_app/app/modules/details/widgets/doingList.dart';
 import 'package:todo_app/app/modules/home/controller.dart';
 
 class Detail extends StatelessWidget {
@@ -113,6 +114,7 @@ class Detail extends StatelessWidget {
           ),
         ),
       ),
+      DoingList(),
     ]));
   }
 }
