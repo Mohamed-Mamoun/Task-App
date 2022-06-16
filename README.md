@@ -1,6 +1,6 @@
 # todo_app
 
-Task App Developed in Flutter Freamwork using get x for State Managment.
+Task App Developed in Flutter Freamwork using get x for State Managment and MVC Clean Architecture.
 
 ## Getting Started
 
