@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:todo_app/app/core/utils/extensions.dart';
 import 'package:todo_app/app/modules/details/widgets/doingList.dart';
+import 'package:todo_app/app/modules/details/widgets/doneTodo.dart';
 import 'package:todo_app/app/modules/home/controller.dart';
 
 class Detail extends StatelessWidget {
@@ -98,9 +99,9 @@ class Detail extends StatelessWidget {
                         var success = homeController
                             .addTodo(homeController.titleController.text);
                         if (success) {
-                          EasyLoading.showSuccess('Added Successfuly');
+                          EasyLoading.showSuccess('Added Successfully');
                         } else {
-                          EasyLoading.showError('Already Exsist');
+                          EasyLoading.showError('Already Exists');
                         }
                         homeController.titleController.clear();
                       }
@@ -115,6 +116,7 @@ class Detail extends StatelessWidget {
         ),
       ),
       DoingList(),
+      DoneTodo()
     ]));
   }
 }

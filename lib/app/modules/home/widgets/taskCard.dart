@@ -25,7 +25,7 @@ class TaskCard extends StatelessWidget {
         width: squareWidth / 2,
         height: squareWidth / 2,
         margin: EdgeInsets.all(3.0.wp),
-        decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        decoration: BoxDecoration(color: color, boxShadow: [
           BoxShadow(
               offset: const Offset(0, 7), blurRadius: 7, color: Colors.grey[400]!)
         ]),
@@ -39,7 +39,7 @@ class TaskCard extends StatelessWidget {
             selectedGradientColor: LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.bottomRight,
-              colors: [color.withOpacity(0.5), color]
+              colors: [color.withOpacity(0.5), Colors.white]
             ),
             unselectedGradientColor: const LinearGradient(
               begin: Alignment.bottomLeft,
@@ -49,7 +49,8 @@ class TaskCard extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(3.0.wp),
-              child: Icon(IconData(task.icon,fontFamily: 'MaterialIcons'), color: color),
+              child: Icon(IconData(task.icon,fontFamily: 'MaterialIcons'), color: 
+              Colors.white),
             ),
             Padding(
               padding: EdgeInsets.all(3.0.wp),
@@ -67,7 +68,8 @@ class TaskCard extends StatelessWidget {
               child: Text('${task.todoList?.length ?? 0} Task',
                style: TextStyle(
                  fontSize: 12.0.sp,
-                 fontWeight: FontWeight.w500
+                 fontWeight: FontWeight.w500,
+                 color: Colors.white
                ),),
             )
             ],

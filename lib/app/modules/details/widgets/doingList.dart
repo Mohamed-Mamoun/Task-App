@@ -38,17 +38,34 @@ class DoingList extends StatelessWidget {
             children: [
               ...homeController.doingTodo
                   .map((element) => Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5.0.wp, vertical: 2.5.wp),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 9.0.wp, vertical: 2.5.wp),
                         child: Row(
                           children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                    Icons.check_box_outline_blank_outlined)),
+                            SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: Checkbox(
+                                onChanged: (value) {
+                                  homeController.done_Todo(element['title']);
+                                },
+                                value: element['done'],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 4.0.wp,
+                            ),
                             Text(
                               element['title'],
-                              style:  TextStyle(fontWeight: FontWeight.w600, fontSize: 12.0.sp),
-                            )
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.0.sp),
+                            ),
+                            Divider(
+                              thickness: 4.5,
+                              indent: 5.0.wp,
+                              endIndent: 5.0.wp,
+                            ),
                           ],
                         ),
                       ))
