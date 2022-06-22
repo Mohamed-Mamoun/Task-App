@@ -18,7 +18,7 @@ class DoneTodo extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 5.0.wp),
                     child: Dismissible(
                       onDismissed: (_) {
-                        homeController.deleteTodo(element['title']);
+                        homeController.deleteTodo(element);
                       },
                       direction: DismissDirection.endToStart,
                       key: ObjectKey(element),
