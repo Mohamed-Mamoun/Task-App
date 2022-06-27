@@ -16,6 +16,7 @@ class HomeController extends GetxController {
   final task = Rx<Task?>(null);
   final doingTodo = [].obs;
   final doneTodo = [].obs;
+  final tabIndex = 0.obs;
 
   @override
   void onInit() {
@@ -121,4 +122,33 @@ class HomeController extends GetxController {
     doneTodo.removeAt(index);
     doneTodo.refresh();
    }
+
+   void changeIndex(int index){
+    tabIndex.value = index;
+   }
+
+   int getTotalTask(){
+    var res = 0;
+    for(int i =0; i< tasks.length; i++){
+      if(tasks[i].todoList != null){
+        res += tasks[i].todoList!.length;
+      }
+    }
+    return res;
+   }
+
+   // Get Total Done Tasks
+  int totalDoneTask(){
+    var res = 0;
+    for(int i=0; i<tasks.length; i++){
+      if(tasks[i].todoList != null){
+        for(int j =0 ; j< tasks[i].todoList!.length; j++){
+          if(tasks[i].todoList![j]['done'] == true){
+            res += 1;
+          }
+        }
+      }
+    }
+    return res;
+  }
 }
